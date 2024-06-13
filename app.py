@@ -8,8 +8,8 @@ import json
 import asyncio
 import os
 import re
-discord.opus.load_opus('/opt/homebrew/Cellar/opus/1.5.2/lib/libopus.0.dylib')
-load_dotenv('/Users/tako/Desktop/VSCode/.env')
+discord.opus.load_opus('/opt/homebrew/Cellar/opus/1.5.2/lib/libopus.0.dylib')#環境によってはパスが違うかもしれません。
+load_dotenv('例です　自分ものに変更して下さい/Users/tako/Desktop/VSCode/.env')#dotenvを使用してtokenを使用する場合はパスを変更して使用して下さい。
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -19,12 +19,12 @@ intents.voice_states = True
 client = discord.Client(intents=intents, activity=discord.Game("Voicevoxで読み上げ中"))
 tree = app_commands.CommandTree(client)
 
-TOKEN = os.getenv('VoicevoxBotTOKEN') 
+TOKEN = os.getenv('VoicevoxBotTOKEN') #.envからtokenを読み込まない場合は自分のtokenに変更してください　例：TOKEN="MTIxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"に変更してください。
 VOICEVOX_API_URL = 'http://localhost:50021'
-DICTIONARY_FILE = '/Users/tako/Desktop/VSCode/読み上げ/temporary/dictionary.json'
+DICTIONARY_FILE = '変更してください　ここは例です。　/Users/tako/Desktop/VSCode/読み上げ/temporary/dictionary.json'#どこに辞書ファイルを保存するかパスをしてください
 FFMPEG_PATH = '/opt/homebrew/bin//ffmpeg'
 
-# 起動+treeコマンド同期
+#起動+treeコマンド同期
 @client.event
 async def on_ready():
     print("┎--------------------┒\n┃login is successful ┃\n┖--------------------┚")
@@ -92,7 +92,7 @@ async def generate_voice(text: str, speaker: int = 1):
 
     response = requests.post(f"{VOICEVOX_API_URL}/synthesis", params=params, data=json.dumps(audio_query))
     #保存先↓
-    save_path = "/Users/tako/Desktop/VSCode/読み上げ/temporary/voice.mp3" 
+    save_path = "/Users/tako/Desktop/VSCode/読み上げ/temporary/voice.mp3"  #これは例の保存先です　自分のパスに変更して下さい。
     with open(save_path, "wb") as f:
         f.write(response.content)
 #メッセージ読み上げ
@@ -108,7 +108,7 @@ async def on_message(message):
     converted_message = apply_dictionary(message_content, dictionary)
     await generate_voice(converted_message)
     voice_client = message.guild.voice_client
-    audio_source = FFmpegPCMAudio("/Users/tako/Desktop/VSCode/読み上げ/temporary/voice.mp3", executable=FFMPEG_PATH)
+    audio_source = FFmpegPCMAudio("/Users/tako/Desktop/VSCode/読み上げ/temporary/voice.mp3", executable=FFMPEG_PATH) #自分の指定したパスに変更して下さい。
     if not voice_client.is_playing():
         #再生
         voice_client.play(audio_source)
