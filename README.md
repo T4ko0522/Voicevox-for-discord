@@ -8,13 +8,13 @@ Voicevox apiを利用したdiscordの読み上げbot (改善の余地あり)
 MacBookAir M1 macOS Sonoma ver 14.5 Python3.11.7
 
 インストール、ダウンロードが必要なアプリ、モジュール
-VoiceVox
-FFmpeg
-Opus
-discord.py 2.3.2 (discordで音声関連のライブラリをインストールするのにはpip install "discord.py[voice]"を利用すると楽です。)
-anyio
-requests
-json
-dotenv(どちらでも)
-os
-re
+VoiceVox,
+FFmpeg,
+Opus,
+discord.py 2.3.2(discordで音声関連のライブラリをインストールするのにはpip install "discord.py[voice]"を利用すると楽です。),
+anyio,
+requests,
+json,
+dotenv(どちらでも),
+os,
+re,
