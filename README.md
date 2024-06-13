@@ -11,10 +11,11 @@ MacBookAir M1 macOS Sonoma ver 14.5 Python3.11.7
 VoiceVox,
 FFmpeg,
 Opus,
-discord.py 2.3.2(discordで音声関連のライブラリをインストールするのにはpip install "discord.py[voice]"を利用すると楽です。),
+discord.py 2.3.2
 anyio,
 requests,
 json,
 dotenv(どちらでも),
 os,
 re,
+(discordで音声関連のライブラリをインストールするのにはpip install "discord.py[voice]"を利用すると楽です。),
