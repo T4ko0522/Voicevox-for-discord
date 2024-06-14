@@ -40,7 +40,10 @@ Voicevox APIを使ったdiscordの読み上げbot
 
 
 ## 連絡先
-質問やフィードバックがある場合は、以下のDiscord、Twitter(自称X)にご連絡ください。
+質問やフィードバックがある場合は、以下のメールアドレス又は、Discord、Twitter(自称X)にご連絡ください。
+
+メールアドレス : tako.renraku1@gmail.com
 
 discord : tako._.v
+
 Twitter : Tako_0522
