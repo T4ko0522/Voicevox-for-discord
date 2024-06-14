@@ -1,15 +1,15 @@
-#Beta v0.2
+#Beta v0.2 released
 import discord
 from discord import FFmpegPCMAudio, app_commands
 import discord.opus
-from dotenv import load_dotenv
+from dotenv import load_dotenv#.envを使用しない場合はこの部分は削除してください。
 import requests
 import json
 import asyncio
 import os
 import re
 discord.opus.load_opus('/opt/homebrew/Cellar/opus/1.5.2/lib/libopus.0.dylib')#環境によってはパスが違うかもしれません。
-load_dotenv('例です　自分ものに変更して下さい/Users/tako/Desktop/VSCode/.env')#dotenvを使用してtokenを使用する場合はパスを変更して使用して下さい。
+load_dotenv('')#dotenvを使用してtokenを使用する場合はここに.envファイルのパスを指定してください。なお、.envを使用しない場合はこの部分は削除してください。
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -19,12 +19,12 @@ intents.voice_states = True
 client = discord.Client(intents=intents, activity=discord.Game("Voicevoxで読み上げ中"))
 tree = app_commands.CommandTree(client)
 
-TOKEN = os.getenv('VoicevoxBotTOKEN') #.envからtokenを読み込まない場合は自分のtokenに変更してください　例：TOKEN="MTIxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"に変更してください。
+TOKEN = os.getenv('VoicevoxBotTOKEN') #.envからtokenを読み込まない場合は、自分のtokenに変更してください。例：TOKEN="MTIxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 VOICEVOX_API_URL = 'http://localhost:50021'
-DICTIONARY_FILE = '変更してください　ここは例です。　/Users/tako/Desktop/VSCode/読み上げ/temporary/dictionary.json'#どこに辞書ファイルを保存するかパスをしてください
-FFMPEG_PATH = '/opt/homebrew/bin//ffmpeg'
+DICTIONARY_FILE = '　/dictionary.json'#dictionaryファイルのパスを指定してください。
+FFMPEG_PATH = '/opt/homebrew/bin//ffmpeg'#環境によってはパスが違うかもしれません。
 
-#起動+treeコマンド同期
+#起動+tree同期
 @client.event
 async def on_ready():
     print("┎--------------------┒\n┃login is successful ┃\n┖--------------------┚")
@@ -47,6 +47,7 @@ dictionary = load_dictionary()
 def shorten_urls(message: str) -> str:
     url_pattern = re.compile(r'(https?://\S+)')
     return url_pattern.sub('[URL省略]', message)
+
 
 
 #joinコマンド
@@ -92,7 +93,8 @@ async def generate_voice(text: str, speaker: int = 1):
 
     response = requests.post(f"{VOICEVOX_API_URL}/synthesis", params=params, data=json.dumps(audio_query))
     #保存先↓
-    save_path = "/Users/tako/Desktop/VSCode/読み上げ/temporary/voice.mp3"  #これは例の保存先です　自分のパスに変更して下さい。
+    save_path = "/Users/tako/Desktop/VSCode/読み上げ/temporary/voice.mp3"  #これは例の保存先です。自分のパスに変更し、１１３行目のパスにこのパスを指定してください。
+    
     with open(save_path, "wb") as f:
         f.write(response.content)
 #メッセージ読み上げ
@@ -162,7 +164,7 @@ async def help_command(interaction: discord.Interaction):
         "/dictionary_delete - 登録してある単語を削除します。\n"
         "/help - このヘルプメッセージを表示します。\n\n"
         "問い合わせ先\n"
-        "Discord <@608941436393619456>\n"
+        "Discord tako._.v\n"
         "Twitter Endroll_ow\n"
     )
     await interaction.response.send_message(help_message)
