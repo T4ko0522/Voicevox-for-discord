@@ -25,8 +25,11 @@ Voicevox APIを使ったdiscordの読み上げbot
 | re                    |            |
 
 1.app.pyをインストールします。
+
 2.Voicevoxを起動します。
+
 3.VSCode等にapp.pyを読み込み、自分のダウンロードしたffmpeg,opus等のパスを指定します。
+
 4.DiscordのbotのTOKEN等を入力して、起動したらDiscord内で/helpと入力することで、できること一覧が出ます。
 
 ##ライセンス
