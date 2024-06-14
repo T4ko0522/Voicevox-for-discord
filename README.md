@@ -1,4 +1,4 @@
-#Voicevox-Discord-bot
+# Voicevox-Discord-bot
 
 Voicevox APIを使ったdiscordの読み上げbot
 パス指定を多用しているので、もしインストールして、利用する場合はコードをしっかり読んでください。
