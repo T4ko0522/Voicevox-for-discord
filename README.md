@@ -1,21 +1,39 @@
-Voicevox apiを利用したdiscordの読み上げbot (改善の余地あり)
+#Voicevox-Discord-bot
 
-パス指定を乱用しています。　もし使う場合はコードをしっかり読んで、自分の使うパスに変更して下さい。
+Voicevox APIを使ったdiscordの読み上げbot
+パス指定を多用しているので、もしインストールして、利用する場合はコードをしっかり読んでください。
 
-*ここに公開されているT4ko0522が作成した読み上げbotのコードは、個人使用の範囲内での改変は自由ですが、二次配布や自作発言などは一切を禁止します。
+## 目次
+- [インストール方法、使い方](#インストール方法、使い方)
+- [ライセンス](#ライセンス)
+- [連絡先](#連絡先)
 
-動作確認
-MacBookAir M1 macOS Sonoma ver 14.5 Python3.11.7
+##インストール方法、使い方
 
-インストール、ダウンロードが必要なアプリ、モジュール
-VoiceVox,
-FFmpeg,
-Opus,
-discord.py 2.3.2,
-asyncio,
-requests,
-json,
-dotenv(どちらでも),
-os,
-re,
-(discordで音声関連のライブラリをインストールするのにはpip install "discord.py[voice]"を利用すると楽です。)
+前提条件
+| 言語・モジュール  | バージョン |
+| --------------------- | ---------- |
+| Python                | 3.11.7     |
+| VoiceVox              | 0.19.2     |
+| FFmpeg                | 7.0.1      |
+| Opus                  | 1.5.2      |
+| discord.py            | 2.3.2      |
+| asyncio               | 4.2.0      |
+| requests              | 2.31.0     |
+| json                  | 0.9.6      |
+| os                    |            |
+| re                    |            |
+
+1.app.pyをインストールします。
+2.Voicevoxを起動します。
+3.VSCode等にapp.pyを読み込み、自分のダウンロードしたffmpeg,opus等のパスを指定します。
+4.DiscordのbotのTOKEN等を入力して、起動したらDiscord内で/helpと入力することで、できること一覧が出ます。
+
+##ライセンス
+このプロジェクトはMITライセンスの下で公開されています。詳細はLICENSEファイルを参照してください。
+
+##連絡先
+質問やフィードバックがある場合は、以下のDiscord、Twitter(自称X)にご連絡ください。
+
+discord : tako._.v
+Twitter : Tako_0522
