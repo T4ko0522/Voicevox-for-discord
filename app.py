@@ -22,7 +22,7 @@ tree = app_commands.CommandTree(client)
 #TOKEN = os.getenv('VoicevoxBotTOKEN')# .envからtokenを読み込む場合
 TOKEN = ("MTIxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")  
 VOICEVOX_API_URL = 'http://localhost:50021'
-DICTIONARY_FILE = '　/dictionary.json'  # dictionaryファイルのパスを指定してください。
+DICTIONARY_FILE = '/dictionary.json'
 FFMPEG_PATH = '/opt/homebrew/bin//ffmpeg'  # 環境によってパスが異なる場合があります。
 
 # 起動とtree同期
@@ -96,7 +96,7 @@ async def generate_voice(text: str, speaker: int = 1):
 
     response = requests.post(f"{VOICEVOX_API_URL}/synthesis", params=params, data=json.dumps(audio_query))
     # 保存先
-    save_path = "/Users/XXXX/Project/読み上げ/temporary/voice.mp3"  # これは例の保存先です。
+    save_path = "temporary/voice.mp3"  # これは例の保存先です。
     
     with open(save_path, "wb") as f:
         f.write(response.content)
@@ -114,7 +114,7 @@ async def on_message(message):
     converted_message = apply_dictionary(message_content, dictionary)
     await generate_voice(converted_message)
     voice_client = message.guild.voice_client
-    audio_source = FFmpegPCMAudio("/Users/tako/Desktop/VSCode/読み上げ/temporary/voice.mp3", executable=FFMPEG_PATH)  # 99行目で指定したパスを指定してください。
+    audio_source = FFmpegPCMAudio("temporary/voice.mp3", executable=FFMPEG_PATH)  # 99行目で指定したパスを指定してください。
     if not voice_client.is_playing():
         # 再生
         voice_client.play(audio_source)
