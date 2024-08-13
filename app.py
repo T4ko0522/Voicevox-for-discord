@@ -2,15 +2,13 @@
 import discord
 from discord import FFmpegPCMAudio, app_commands
 import discord.opus
-#from dotenv import load_dotenv  # .envを使用する場合はコメントアウトを消してください。
 import requests
 import json
 import asyncio
 import os
 import re
 
-discord.opus.load_opus('/opt/homebrew/Cellar/opus/1.5.2/lib/libopus.0.dylib')  # 環境によってパスが異なる場合があります。
-#load_dotenv('')  # dotenvを使用してtokenを利用する場合は、ここに.envファイルのパスを指定してください。
+discord.opus.load_opus('/opt/homebrew/Cellar/opus/1.5.2/lib/libopus.0.dylib')  # homebrewでインストールしてください。
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -19,13 +17,12 @@ intents.voice_states = True
 
 client = discord.Client(intents=intents, activity=discord.Game("Voicevoxで読み上げ中"))
 tree = app_commands.CommandTree(client)
-#TOKEN = os.getenv('VoicevoxBotTOKEN')# .envからtokenを読み込む場合
 TOKEN = ("MTIxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")  
 VOICEVOX_API_URL = 'http://localhost:50021'
 DICTIONARY_FILE = '/dictionary.json'
-FFMPEG_PATH = '/opt/homebrew/bin//ffmpeg'  # 環境によってパスが異なる場合があります。
+FFMPEG_PATH = '/opt/homebrew/bin//ffmpeg'  # homebrewでインストールしてください。
 
-# 起動とtree同期
+# 起動確認とtree同期
 @client.event
 async def on_ready():
     print("┎--------------------┒\n┃login is successful ┃\n┖--------------------┚")
