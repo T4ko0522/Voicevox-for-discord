@@ -158,7 +158,7 @@ async def help_command(interaction: discord.Interaction):
         "/help - このヘルプメッセージを表示します。\n\n"
         "問い合わせ先\n"
         "Discord tako._.v\n"
-        "Twitter Endroll_ow\n"
+        "Twitter Tako_0522\n"
     )
     await interaction.response.send_message(help_message)
 
