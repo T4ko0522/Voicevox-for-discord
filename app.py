@@ -1,4 +1,4 @@
-# Beta v0.2 released
+# Beta v0.3 released
 import discord
 from discord import FFmpegPCMAudio, app_commands
 import discord.opus
