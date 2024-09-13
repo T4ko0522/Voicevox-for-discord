@@ -1,4 +1,3 @@
-# Beta v0.3 released
 import discord
 from discord import FFmpegPCMAudio, app_commands
 import discord.opus
@@ -8,7 +7,7 @@ import asyncio
 import os
 import re
 
-discord.opus.load_opus('/opt/homebrew/Cellar/opus/1.5.2/lib/libopus.0.dylib')  # homebrewでインストールしてください。
+discord.opus.load_opus('/opt/homebrew/Cellar/opus/1.5.2/lib/libopus.0.dylib') # 音声出力するためのモジュール
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -20,7 +19,7 @@ tree = app_commands.CommandTree(client)
 TOKEN = ("MTIxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")  
 VOICEVOX_API_URL = 'http://localhost:50021'
 DICTIONARY_FILE = '/dictionary.json'
-FFMPEG_PATH = '/opt/homebrew/bin//ffmpeg'  # homebrewでインストールしてください。
+FFMPEG_PATH = '/opt/homebrew/bin//ffmpeg'
 
 # 起動確認とtree同期
 @client.event
@@ -54,7 +53,7 @@ async def join(interaction: discord.Interaction):
     if voice_state and voice_state.channel:
         # エラー：既に参加している場合
         if interaction.guild.voice_client is not None:
-            await interaction.response.send_message(":no_entry_sign:既にボイスチャットに接続されています。:no_entry_sign:")
+            await interaction.response.send_message(":no_entry_sign:既にボイスチャットに接続されています。")
             return
         voice_channel = voice_state.channel
         # 接続
@@ -133,7 +132,7 @@ async def leave(interaction: discord.Interaction):
 async def dictionary_register(interaction: discord.Interaction, word: str, reading: str):
     dictionary[word] = reading
     save_dictionary(dictionary)
-    await interaction.response.send_message(f"単語 '{word}' を読み方 '{reading}' として登録しました。")
+    await interaction.response.send_message(f"\"{word}\"の読み方を\"{reading}\"として登録しました。")
 
 # 辞書削除コマンド
 @tree.command(name="dictionary_delete", description="登録してある単語を削除します。")
@@ -141,24 +140,16 @@ async def dictionary_remove(interaction: discord.Interaction, word: str):
     if word in dictionary:
         del dictionary[word]
         save_dictionary(dictionary)
-        await interaction.response.send_message(f"単語 {word} の読み方を辞書から削除しました。")
+        await interaction.response.send_message(f"\"{word}\"の読み方を辞書から削除しました。")
     else:
-        await interaction.response.send_message(f"単語 {word} は辞書に登録されていません。")
+        await interaction.response.send_message(f"\"{word}\"は辞書に登録されていません。")
 
 # helpコマンド
 @tree.command(name="help", description="コマンドリストを表示します。")
 async def help_command(interaction: discord.Interaction):
     # 表示するhelpメッセージ
     help_message = (
-        "コマンド一覧:\n"
-        "/join - 指定されたボイスチャンネルに参加します。\n"
-        "/dissconnect - ボイスチャンネルから退出します。\n"
-        "/dictionary_register - 単語の読み方を登録します。\n"
-        "/dictionary_delete - 登録してある単語を削除します。\n"
-        "/help - このヘルプメッセージを表示します。\n\n"
-        "問い合わせ先\n"
-        "Discord tako._.v\n"
-        "Twitter Tako_0522\n"
+        "コマンド一覧:\n/join - 指定されたボイスチャンネルに参加します。\n/dissconnect - ボイスチャンネルから退出します。\n/dictionary_register - 単語の読み方を登録します。\n/dictionary_delete - 登録してある単語を削除します。\n/help - このヘルプメッセージを表示します。\n\n問い合わせ先\nDiscord tako._.v\nTwitter Tako_0522\n"
     )
     await interaction.response.send_message(help_message)
 
