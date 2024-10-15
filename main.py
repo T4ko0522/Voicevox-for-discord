@@ -9,8 +9,8 @@ import asyncio
 import os
 import re
 from datetime import datetime
-discord.opus.load_opus('/opt/homebrew/Cellar/opus/1.5.2/lib/libopus.0.dylib')
-load_dotenv('.env')
+discord.opus.load_opus('/opt/homebrew/Cellar/opus/1.5.2/lib/libopus.0.dylib') #俺のmacのデフォはここ。　自分の環境に合ったパスをうて
+load_dotenv('自分のbot tokenが入ってる.envのパスうて')
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -23,8 +23,7 @@ tree = app_commands.CommandTree(client)
 TOKEN = os.getenv('VoicevoxBotTOKEN') 
 VOICEVOX_API_URL = 'http://localhost:50021'
 DICTIONARY_FILE = 'temporary/dictionary.json'
-FFMPEG_PATH = '/opt/homebrew/bin/ffmpeg'
-
+FFMPEG_PATH = '/opt/homebrew/bin/ffmpeg' #opusと同じ
 
 @client.event
 async def on_ready():
@@ -141,7 +140,6 @@ async def join(interaction: discord.Interaction):
         )
         await interaction.response.send_message(embed=embed)
 
-
 @tree.command(name="dissconect", description="ボイスチャットから切断します。")
 async def leave(interaction: discord.Interaction):
     voice_client = discord.utils.get(client.voice_clients, guild=interaction.guild)
@@ -161,7 +159,6 @@ async def leave(interaction: discord.Interaction):
         )
         await interaction.response.send_message(embed=embed)
 
-
 @tree.command(name="dictionary_register", description="単語の読み方を登録します。")
 async def dictionary_register(interaction: discord.Interaction, word: str, reading: str):
     dictionary[word] = reading
@@ -172,7 +169,6 @@ async def dictionary_register(interaction: discord.Interaction, word: str, readi
         color=discord.Color.green()
     )
     await interaction.response.send_message(embed=embed)
-
 
 @tree.command(name="dictionary_delete", description="登録してある単語を削除します。")
 async def dictionary_remove(interaction: discord.Interaction, word: str):
@@ -192,7 +188,6 @@ async def dictionary_remove(interaction: discord.Interaction, word: str):
             color=discord.Color.red()
         )
         await interaction.response.send_message(embed=embed)
-
 
 @tree.command(name="help", description="コマンドリストを表示します。")
 async def help_command(interaction: discord.Interaction):
