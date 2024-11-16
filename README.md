@@ -17,8 +17,6 @@ Voicevox APIを使ったdiscordの読み上げbot
 | Opus                  | 1.5.2      |
 | discord.py            | 2.3.2      |
 | asyncio               | 4.2.0      |
-| requests              | 2.31.0     |
-| json                  | 0.9.6      |
 
 
 
