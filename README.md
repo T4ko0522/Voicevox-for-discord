@@ -1,3 +1,6 @@
+# これもコード汚すぎるゴミコード。  
+# 戒めとして公開
+
 # Voicevox-for-discord
 
 Voicevox APIを使ったdiscordの読み上げbot
